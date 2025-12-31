@@ -1,0 +1,240 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Guardian | Projects</title>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <style>
+        :root {
+            --bg-color: #050505;
+            --card-bg: rgba(255, 255, 255, 0.03);
+            --card-border: rgba(255, 255, 255, 0.1);
+            --text-main: #ffffff;
+            --text-secondary: #a0a0a0;
+            --gradient-text: linear-gradient(90deg, #7B61FF 0%, #00D4FF 100%);
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body {
+            background-color: var(--bg-color);
+            color: var(--text-main);
+            font-family: 'Outfit', sans-serif;
+            overflow-x: hidden;
+        }
+
+        body::before {
+            content: "";
+            position: fixed;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)' opacity='0.05'/%3E%3C/svg%3E");
+            opacity: 0.4;
+            pointer-events: none;
+            z-index: -1;
+        }
+
+        .orb {
+            position: fixed;
+            border-radius: 50%;
+            filter: blur(100px);
+            z-index: -2;
+            animation: floatOrb 10s infinite alternate;
+        }
+        .orb-1 { width: 400px; height: 400px; background: #5c24ff; top: -100px; left: -100px; opacity: 0.4; }
+        .orb-2 { width: 300px; height: 300px; background: #00d4ff; bottom: -50px; right: -50px; opacity: 0.3; animation-delay: -5s; }
+
+        @keyframes floatOrb {
+            0% { transform: translate(0, 0); }
+            100% { transform: translate(30px, 50px); }
+        }
+
+        .container {
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        a { text-decoration: none; color: white; transition: 0.3s; }
+
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 30px 0;
+        }
+
+        .logo {
+            font-weight: 800;
+            font-size: 24px;
+            letter-spacing: -1px;
+        }
+
+        .menu {
+            display: flex;
+            gap: 40px;
+        }
+
+        .menu a {
+            font-size: 14px;
+            color: var(--text-secondary);
+            font-weight: 500;
+        }
+        .menu a:hover, .menu a.active { color: white; text-shadow: 0 0 10px rgba(255,255,255,0.5); }
+
+        .page-header {
+            margin-top: 80px;
+            margin-bottom: 60px;
+        }
+
+        .page-header h1 {
+            font-size: 60px;
+            margin-bottom: 10px;
+        }
+
+        .gradient-text {
+            background: var(--gradient-text);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .project-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 30px;
+            padding-bottom: 100px;
+        }
+
+        .project-card {
+            background: var(--card-bg);
+            border: 1px solid var(--card-border);
+            border-radius: 20px;
+            overflow: hidden;
+            transition: 0.4s ease;
+        }
+
+        .project-card:hover {
+            transform: translateY(-10px);
+            border-color: #7B61FF;
+            box-shadow: 0 10px 40px rgba(123, 97, 255, 0.1);
+        }
+
+        .project-img-wrapper {
+            width: 100%;
+            height: 220px;
+            overflow: hidden;
+            position: relative;
+        }
+
+        .project-img-wrapper img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+        }
+
+        .project-card:hover .project-img-wrapper img {
+            transform: scale(1.1);
+        }
+
+        .project-content {
+            padding: 25px;
+        }
+
+        .project-content h3 {
+            font-size: 22px;
+            margin-bottom: 10px;
+        }
+
+        .project-content p {
+            color: var(--text-secondary);
+            font-size: 14px;
+            line-height: 1.6;
+            margin-bottom: 20px;
+        }
+
+        .btn-visit {
+            display: inline-block;
+            width: 100%;
+            padding: 12px 0;
+            text-align: center;
+            background: rgba(255,255,255,0.1);
+            border: 1px solid rgba(255,255,255,0.1);
+            border-radius: 10px;
+            font-weight: 600;
+            font-size: 14px;
+        }
+
+        .btn-visit:hover {
+            background: white;
+            color: black;
+        }
+
+        @media (max-width: 768px) {
+            .menu { display: none; }
+            .page-header h1 { font-size: 40px; }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="orb orb-1"></div>
+    <div class="orb orb-2"></div>
+
+    <div class="container">
+        <nav>
+            <div class="logo">GUARDIAN<span style="color:#00d4ff">.</span></div>
+            <div class="menu">
+                <a href="index.html">Home</a>
+                <a href="projects.html" class="active">Projects</a>
+                <a href="about.html">About</a>
+                <a href="contact.html">Contact</a>
+            </div>
+        </nav>
+
+        <div class="page-header">
+            <h1>Selected <span class="gradient-text">project</span></h1>
+            <p style="color: var(--text-secondary)">berbagai projek saya saya kerjakan .</p>
+        </div>
+
+        <div class="project-grid">
+            
+            <div class="project-card">
+                <div class="project-img-wrapper">
+                    <img src="asset/projek1.jpg" alt="Project 1" onerror="this.src='https://via.placeholder.com/400x300/1a1a2e/ffffff?text=Image+Not+Found'">
+                </div>
+                <div class="project-content">
+                    <h3>Web Ai</h3>
+                    <p>Dibuat menggunakan Node.js dan HTML.</p>
+                    <a href="https://ai.fmcstore.web.id" target="_blank" class="btn-visit">Kunjungi Website <i class="fas fa-arrow-right" style="margin-left:5px;"></i></a>
+                </div>
+            </div>
+
+            <div class="project-card">
+                <div class="project-img-wrapper">
+                    <img src="asset/projek2.jpg" alt="Project 2" onerror="this.src='https://via.placeholder.com/400x300/1a1a2e/ffffff?text=Image+Not+Found'">
+                </div>
+                <div class="project-content">
+                    <h3>Website Store</h3>
+                    <p>Website Penjualan Tentang berbagai Ponsel Cloud ,di bangun menggunakan Html.</p>
+                    <a href="https://cloud.fmcstore.web.id" target="_blank" class="btn-visit">Kunjungi Website <i class="fas fa-arrow-right" style="margin-left:5px;"></i></a>
+                </div>
+            </div> 
+
+            <div class="project-card">
+                <div class="project-img-wrapper">
+                    <img src="asset/projek3.jpg" alt="Project 3" onerror="this.src='https://via.placeholder.com/400x300/1a1a2e/ffffff?text=Image+Not+Found'">
+                </div>
+                <div class="project-content">
+                    <h3>Read Comic</h3>
+                    <p>Website Untuk Penggemar Anime.</p>
+                    <a href="https://comic.fmcstore.web.id" target="_blank" class="btn-visit">Kunjungi Website <i class="fas fa-arrow-right" style="margin-left:5px;"></i></a>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</body>
+</html>
