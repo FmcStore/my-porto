@@ -1,0 +1,274 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Guardian | About Me</title>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <style>
+        :root {
+            --bg-color: #050505;
+            --card-bg: rgba(255, 255, 255, 0.03);
+            --card-border: rgba(255, 255, 255, 0.1);
+            --text-main: #ffffff;
+            --text-secondary: #a0a0a0;
+            --gradient-text: linear-gradient(90deg, #7B61FF 0%, #00D4FF 100%);
+            --accent-purple: #7B61FF;
+            --accent-blue: #00D4FF;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body {
+            background-color: var(--bg-color);
+            color: var(--text-main);
+            font-family: 'Outfit', sans-serif;
+            overflow-x: hidden;
+        }
+
+        body::before {
+            content: "";
+            position: fixed;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)' opacity='0.05'/%3E%3C/svg%3E");
+            opacity: 0.4;
+            pointer-events: none;
+            z-index: -1;
+        }
+
+        .orb {
+            position: fixed;
+            border-radius: 50%;
+            filter: blur(100px);
+            z-index: -2;
+            animation: floatOrb 10s infinite alternate;
+        }
+        .orb-1 { width: 400px; height: 400px; background: #5c24ff; top: -100px; left: -100px; opacity: 0.4; }
+        .orb-2 { width: 300px; height: 300px; background: #00d4ff; bottom: -50px; right: -50px; opacity: 0.3; }
+
+        @keyframes floatOrb {
+            0% { transform: translate(0, 0); }
+            100% { transform: translate(30px, 50px); }
+        }
+
+        .container {
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        a { text-decoration: none; color: white; transition: 0.3s; }
+
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 30px 0;
+            margin-bottom: 40px;
+        }
+
+        .logo {
+            font-weight: 800;
+            font-size: 24px;
+        }
+
+        .menu {
+            display: flex;
+            gap: 40px;
+        }
+
+        .menu a {
+            font-size: 14px;
+            color: var(--text-secondary);
+            font-weight: 500;
+        }
+        .menu a:hover, .menu a.active { color: white; text-shadow: 0 0 10px rgba(255,255,255,0.5); }
+
+        .header-about {
+            text-align: center;
+            margin-bottom: 60px;
+        }
+
+        .header-about h1 {
+            font-size: 60px;
+            margin-bottom: 10px;
+            line-height: 1.1;
+        }
+
+        .gradient-text {
+            background: var(--gradient-text);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .about-grid {
+            display: grid;
+            grid-template-columns: 1.2fr 0.8fr;
+            gap: 30px;
+            padding-bottom: 100px;
+        }
+
+        .glass-card {
+            background: var(--card-bg);
+            border: 1px solid var(--card-border);
+            border-radius: 24px;
+            padding: 40px;
+            position: relative;
+            backdrop-filter: blur(10px);
+        }
+
+        .card-title {
+            font-size: 20px;
+            font-weight: 700;
+            margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        .card-title i { color: var(--accent-blue); }
+
+        .bio-text p {
+            font-size: 16px;
+            line-height: 1.8;
+            color: #d1d1d1;
+            margin-bottom: 20px;
+        }
+        .highlight { color: white; font-weight: 600; border-bottom: 1px dashed var(--accent-purple); }
+
+        .edu-badge {
+            background: linear-gradient(135deg, rgba(123, 97, 255, 0.1), rgba(0, 212, 255, 0.1));
+            border: 1px solid rgba(123, 97, 255, 0.3);
+            padding: 20px;
+            border-radius: 16px;
+            margin-top: 30px;
+        }
+        .edu-badge h4 { font-size: 16px; margin-bottom: 5px; }
+        .edu-badge span { font-size: 13px; color: var(--text-secondary); text-transform: uppercase; letter-spacing: 1px; }
+
+        .skill-group { margin-bottom: 25px; }
+        .skill-label { font-size: 12px; color: var(--text-secondary); margin-bottom: 10px; display: block; text-transform: uppercase; letter-spacing: 1px; }
+        
+        .skill-tags { display: flex; flex-wrap: wrap; gap: 10px; }
+        .tag {
+            padding: 8px 16px;
+            background: rgba(255,255,255,0.05);
+            border: 1px solid rgba(255,255,255,0.1);
+            border-radius: 50px;
+            font-size: 13px;
+            font-weight: 500;
+            transition: 0.3s;
+        }
+        .tag:hover { background: white; color: black; transform: translateY(-3px); }
+        .tag.design { border-color: rgba(123, 97, 255, 0.5); color: #c4b5fd; }
+        .tag.dev { border-color: rgba(0, 212, 255, 0.5); color: #a5f3fc; }
+
+        .location-box {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 8px 16px;
+            background: rgba(255,255,255,0.1);
+            border-radius: 50px;
+            font-size: 14px;
+            margin-top: 10px;
+        }
+
+        @media (max-width: 768px) {
+            .menu { display: none; }
+            .header-about h1 { font-size: 40px; }
+            .about-grid { grid-template-columns: 1fr; }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="orb orb-1"></div>
+    <div class="orb orb-2"></div>
+
+    <div class="container">
+        <nav>
+            <div class="logo">GUARDIAN<span style="color:#00d4ff">.</span></div>
+            <div class="menu">
+                <a href="index.html">Home</a>
+                <a href="projects.html">Projects</a>
+                <a href="about.html" class="active">About</a>
+                <a href="contact.html">Contact</a>
+            </div>
+        </nav>
+
+        <div class="header-about">
+            <p style="color: var(--accent-purple); font-weight: 600; letter-spacing: 2px; text-transform: uppercase; margin-bottom: 10px;">Who Am I?</p>
+            <h1>Guardian Marx <br><span class="gradient-text">Christocent</span></h1>
+            <div class="location-box">
+                <i class="fas fa-map-marker-alt" style="color: #ff4757;"></i> North Sumatera, Indonesia
+            </div>
+        </div>
+
+        <div class="about-grid">
+            
+            <div class="glass-card">
+                <div class="card-title"><i class="fas fa-user-astronaut"></i> The Story</div>
+                <div class="bio-text">
+                    <p>
+                        Hi! I'm a passionate <span class="highlight">UI/UX Designer</span> and <span class="highlight">Frontend Developer</span>. 
+                        My journey revolves around creating intuitive and visually appealing user interfaces that bring ideas to life on the web.
+                    </p>
+                    <p>
+                        Currently, I am a Vocational High School student majoring in <span class="highlight">Computer Science</span> (Telecommunications and Computer Network Engineering).
+                    </p>
+                    <p>
+                        I’m particularly focused on modern web design, responsive layouts, and interactive user experiences that blend <span style="color:white;">beauty with functionality</span>.
+                    </p>
+                </div>
+
+                <div class="edu-badge">
+                    <div style="display:flex; justify-content:space-between; align-items:center;">
+                        <div>
+                            <h4>Vocational High School</h4>
+                            <span>Computer Network Engineering (TKJ)</span>
+                        </div>
+                        <i class="fas fa-graduation-cap" style="font-size: 24px; color: var(--accent-blue);"></i>
+                    </div>
+                </div>
+            </div>
+
+            <div style="display: flex; flex-direction: column; gap: 20px;">
+                
+                <div class="glass-card">
+                    <div class="card-title"><i class="fas fa-layer-group"></i> Current Stack</div>
+                    
+                    <div class="skill-group">
+                        <span class="skill-label">Design</span>
+                        <div class="skill-tags">
+                            <span class="tag design">Figma</span>
+                            <span class="tag design">Adobe XD</span>
+                            <span class="tag design">UI Prototyping</span>
+                        </div>
+                    </div>
+
+                    <div class="skill-group">
+                        <span class="skill-label">Frontend Dev</span>
+                        <div class="skill-tags">
+                            <span class="tag dev">HTML5</span>
+                            <span class="tag dev">CSS3</span>
+                            <span class="tag dev">JavaScript</span>
+                            <span class="tag dev">Tailwind CSS</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="glass-card" style="background: linear-gradient(135deg, rgba(255,255,255,0.05), rgba(0,0,0,0));">
+                    <div class="card-title"><i class="fas fa-rocket"></i> What I'm Doing</div>
+                    <p style="font-size: 14px; color: #d1d1d1; line-height: 1.6;">
+                        Creating personal projects and exploring new web technologies to expand my portfolio.
+                    </p>
+                </div>
+
+            </div>
+        </div>
+
+    </div>
+</body>
+</html>
