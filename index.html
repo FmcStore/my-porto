@@ -1,4 +1,4 @@
-here<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="id">
 <head>
     <meta charset="UTF-8">
@@ -79,6 +79,7 @@ here<!DOCTYPE html>
             font-weight: 800;
             font-size: 24px;
             letter-spacing: -1px;
+            z-index: 101;
         }
 
         .menu {
@@ -92,6 +93,45 @@ here<!DOCTYPE html>
             font-weight: 500;
         }
         .menu a:hover, .menu a.active { color: white; text-shadow: 0 0 10px rgba(255,255,255,0.5); }
+
+        .hamburger {
+            display: none;
+            font-size: 24px;
+            cursor: pointer;
+            z-index: 101;
+        }
+
+        .sidebar {
+            position: fixed;
+            top: 0;
+            right: -100%;
+            width: 250px;
+            height: 100vh;
+            background: rgba(5, 5, 5, 0.95);
+            backdrop-filter: blur(15px);
+            border-left: 1px solid var(--card-border);
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            gap: 30px;
+            transition: 0.4s ease;
+            z-index: 100;
+        }
+
+        .sidebar.active {
+            right: 0;
+        }
+
+        .sidebar a {
+            font-size: 18px;
+            font-weight: 600;
+            color: var(--text-secondary);
+        }
+
+        .sidebar a:hover, .sidebar a.active {
+            color: white;
+        }
 
         .hero {
             height: 90vh;
@@ -229,6 +269,7 @@ here<!DOCTYPE html>
             }
             .span-2, .span-row-2 { grid-column: span 1; grid-row: span 1; }
             .menu { display: none; }
+            .hamburger { display: block; }
         }
 
     </style>
@@ -247,7 +288,18 @@ here<!DOCTYPE html>
                 <a href="about.html">About</a>
                 <a href="contact.html">Contact</a>
             </div>
+            
+            <div class="hamburger" onclick="toggleSidebar()">
+                <i class="fas fa-bars"></i>
+            </div>
         </nav>
+
+        <div class="sidebar" id="sidebarMenu">
+            <a href="index.html" class="active" onclick="toggleSidebar()">Home</a>
+            <a href="projects.html" onclick="toggleSidebar()">Projects</a>
+            <a href="about.html" onclick="toggleSidebar()">About</a>
+            <a href="contact.html" onclick="toggleSidebar()">Contact</a>
+        </div>
 
         <section class="hero">
             <div class="hero-content">
@@ -319,6 +371,13 @@ here<!DOCTYPE html>
             </div>
         </section>
     </div>
+
+    <script>
+        function toggleSidebar() {
+            const sidebar = document.getElementById('sidebarMenu');
+            sidebar.classList.toggle('active');
+        }
+    </script>
 
 </body>
 </html>
